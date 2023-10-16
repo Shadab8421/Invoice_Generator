@@ -1,0 +1,46 @@
+body {
+    margin-top: 20px;
+}
+
+html {
+    font-size: 80%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6.5rem;
+}
+
+.pt {
+    width: 70%;
+    background-color: rgb(245, 245, 240);
+}
+
+span {
+    color: #2980b9;
+}
+
+h2 {
+    text-align: center;
+    color: #2980b9;
+}
+
+@media print {
+    .btn {
+        display: none;
+    }
+    .NoPrint {
+        display: none;
+    }
+    .form-control {
+        border: 0px;
+    }
+    .input-group-text {
+        border: 0px;
+        background-color: white;
+    }
+    .pt {
+        background-color: rgb(245, 245, 240);
+    }
+    .table-primary {
+        background-color: #2980b9;
+    }
+}

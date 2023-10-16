@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A-Zee Cable's Invoice Generator</title>
+
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container" style="font-size: medium;" id="invoice">
+        <div class="card">
+            <div class="card-header">
+                <h1><span>Shadab</span> CABLE NETWORK</h1>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">GST:000000000000000</h4>
+
+                <h4 class="card-title">BANK AC NO. : 00000000000</h4>
+                <h4 class="card-title">IFSC CODE : 00000000000</h4>
+                <h4 class="card-title">Email: sayedshadabali8421@gmail.com</h4>
+                <!-- <h4 class="card-title">[Mo. No.: 9422714341, 9881070039]</h4> -->
+
+
+            </div>
+        </div>
+
+
+
+        <div class="card">
+            <div class="card-header">
+                <h2>BILL INVOICE</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <h3>Bill To:</h3>
+                        <div class="input-group mb-3">
+                            <span id="basic-addon1"></span>
+                            <input type="text" class="form-control form-control-lg" placeholder="Customer Name" aria-label="Username" aria-describedby="basic-addon1" required>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span id="basic-addon1"> </span>
+                            <input type="text" class="form-control form-control-lg" placeholder="Address" aria-label="Address" aria-describedby="basic-addon1" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">GST NO.</span>
+                            <input type="text" class="form-control form-control-lg" aria-label="GST Number" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+
+                    <div class="col-4" style="margin-top: 33px;">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><strong>Invoice No.</strong></span>
+                            <input type="text" class="form-control form-control-lg" id="invoiceNumber" placeholder="Invoice No." aria-label="Invoice Number" aria-describedby="basic-addon1" required>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><strong>Date</strong> </span>
+                            <input type="date" class="form-control form-control-lg" placeholder="GST Number" aria-label="Date" aria-describedby="basic-addon1" required>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <table class="table table-bordered">
+                        <thead class="table-primary">
+                            <tr class="head">
+                                <th scope="col">#</th>
+                                <th scope="col">Item Name</th>
+                                <th scope="col">HSN/SAC</th>
+                                <th scope="col" class="text-center">Quantity</th>
+                                <th scope="col" class="text-center">Unit</th>
+                                <th scope="col" class="text-center">Price / unit</th>
+                                <!-- <th scope="col" class="text-center">Installation Charges</th> -->
+                                <th scope="col" class="text-center">Amount</th>
+                                <th class="NoPrint"><button type="button" class="btn btn-success" onclick="btnadd()">+</button></th>
+                            </tr>
+                        </thead>
+                        <tbody id="Tbody">
+                            <tr id="Trow" class="d-none">
+                                <th scope="row">1</th>
+                                <td><span contentEditable="true" class="editable-value" style="color: black;" oninput="Calc(this)"></span></td>
+
+
+
+                                <td><input type="text" class="form-control form-control-lg" name=""></td>
+                                <td><input type="number" class="form-control form-control-lg" name="qty" onchange="Calc(this);"></td>
+                                <td><input type="number" class="form-control form-control-lg" name=""></td>
+                                <td><input type="number" class="form-control form-control-lg" name="rate" onchange="Calc(this);"></td>
+                                <td><input type="number" class="form-control form-control-lg" name="amt" disabled=""></td>
+                                <td class="NoPrint"><button type="button" class="btn btn-danger" onclick="btndel(this)">X</button></td>
+                            </tr>
+
+
+
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <hr>
+                    <div class="row">
+                        <div class="col-8" style="padding-left:40px">
+                            <h4 style="padding-top: 10px;">Total</h4>
+                            <h4 style="padding-top: 25px;">CGST Tax 9%</h4>
+                            <h4 style="padding-top: 25px;">SGST Tax 9%</h4>
+
+
+                            <hr>
+                            <h4>NET AMOUNT IN WORDS</h4>
+                            <div id="amountInWords" class="pt">
+
+                            </div>
+
+
+
+
+                        </div>
+
+                        <div class="col-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Sub-Total:</span>
+                                <input type="number" class="form-control form-control-lg" id="FTotal" name="FTotal" onchange="GetTotal()" style="padding-top: 10px;" disabled="">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">CGST:</span>
+                                <input type="number" class="form-control form-control-lg" id="CGST" name="CGST" style="padding-top: 10px;" disabled>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">SGST:</span>
+                                <input type="number" class="form-control form-control-lg" id="SGST" name="SGST" style="padding-top: 10px;" disabled>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Net Amount :</span>
+                                <input type="number" class="form-control form-control-lg" id="FNet" name="FNet" disabled="">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-8" style="padding-left:40px">
+                            <h4 style="padding-top: 5px;">TERMS AND CONDITIONS</h4>
+                            <p class="pt">Thank you for doing business with us.</p>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="NoPrint">
+
+                    <button type="button" class="btn btn-primary btn-lg" id="download" onclick="GetPdf()">Generate PDF</button>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <script src="script.js"></script>
+                <script src="https://code.jquery.com/jquery-3.7.0.slim.js" integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js " integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz " crossorigin="anonymous "></script>
+</body>
+
+</html>
